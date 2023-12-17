@@ -2,8 +2,8 @@ from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
-from .serializers import StudentSerializer
-from .models import Student
+from .serializers import StudentSerializer, LessonInfoSerializer
+from .models import Student, LessonInfo
 
 class SignUpAPI(APIView):
     def post(self, request):
@@ -23,3 +23,17 @@ class SignInAPI(APIView):
             return Response('로그인 성공', status=200)
         else:
             return Response('로그인 실패', status=400)
+        
+class LessonInfoListAPI(APIView):
+    def get(self, request):
+        list = LessonInfo.objects.all()
+        serializer = LessonInfoSerializer(list, many=True)
+        return Response(serializer.data)
+    
+class LessonInfoCreateAPI(APIView):
+    def post(self, request):
+        info = LessonInfoSerializer(data=request.data)
+        if info.is_valid():
+            info.save()
+            return Response(info.data)
+        return Response(info.errors, status=400)

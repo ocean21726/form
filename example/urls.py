@@ -17,11 +17,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from product.views import ProductListAPI
-from student.views import SignUpAPI, SignInAPI
+from student.views import SignUpAPI, SignInAPI, LessonInfoListAPI, LessonInfoCreateAPI
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/product/', ProductListAPI.as_view()),
     path('api/student/sign-up', SignUpAPI.as_view()),
-    path('api/student/sign-in', SignInAPI.as_view())
+    path('api/student/sign-in', SignInAPI.as_view()),
+    path('api/lesson-info/list', LessonInfoListAPI.as_view()),
+    path('api/lesson-info/create', LessonInfoCreateAPI.as_view()),
 ]
