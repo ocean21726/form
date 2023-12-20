@@ -2,8 +2,8 @@ from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
-from .serializers import StudentSerializer, LessonInfoSerializer
-from .models import Student, LessonInfo
+from .serializers import StudentSerializer, LessonInfoSerializer, LessonSerializer
+from .models import Student, LessonInfo, Lesson
 
 class SignUpAPI(APIView):
     def post(self, request):
@@ -37,3 +37,18 @@ class LessonInfoCreateAPI(APIView):
             info.save()
             return Response(info.data)
         return Response(info.errors, status=400)
+    
+class LessonCreateAPI(APIView):
+    def post(self, request):
+        data = request.data
+        info = LessonInfo.objects.filter(idx=data['type_idx']).exists()
+        if info:
+            lesson = LessonSerializer(data=data)
+            if lesson.is_valid():
+                lesson.save()
+                return Response('수업 일정이 등록되었습니다.', status=200)
+            else:
+                return Response('수업 등록 오류', status=400)
+        else:
+            return Response('수업 유형 오류', status=400)
+            

@@ -21,4 +21,4 @@ class Lesson(models.Model):
     instructor = models.CharField(max_length=40)
     max_attend = models.IntegerField(default=0)
     classroom = models.CharField(max_length=100)
-    lesson_at = models.DateTimeField(auto_now=True)
+    lesson_at = models.DateTimeField(null=False)
