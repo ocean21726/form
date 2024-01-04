@@ -58,7 +58,7 @@ class LessonCreateAPI(APIView):
             return Response('수업 유형 오류', status=400)
 
 # 월간 수업 일정 가져오기  
-class MonthlyScheduleAPI(APIView):
+class LessonMonthlyAPI(APIView):
     def get(self, request):
         year = request.GET.get("year")
         month = request.GET.get("month")

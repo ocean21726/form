@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from product.views import ProductListAPI
-from student.views import SignUpAPI, SignInAPI, LessonInfoListAPI, LessonInfoCreateAPI, LessonCreateAPI, MonthlyScheduleAPI
+from student.views import SignUpAPI, SignInAPI, LessonInfoListAPI, LessonInfoCreateAPI, LessonCreateAPI, LessonMonthlyAPI
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,5 +27,5 @@ urlpatterns = [
     path('api/lesson-info/list', LessonInfoListAPI.as_view()),
     path('api/lesson-info/create', LessonInfoCreateAPI.as_view()),
     path('api/lesson/create', LessonCreateAPI.as_view()),
-    path('api/lesson/monthly', MonthlyScheduleAPI.as_view()),
+    path('api/lesson/monthly', LessonMonthlyAPI.as_view()),
 ]
