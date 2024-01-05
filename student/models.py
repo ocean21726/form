@@ -22,3 +22,9 @@ class Lesson(models.Model):
     max_attend = models.IntegerField(default=0)
     classroom = models.CharField(max_length=100)
     lesson_at = models.DateTimeField(null=False)
+    
+
+class Enrolment(models.Model):
+    user_idx = models.IntegerField(null=False)
+    lesson_idx = models.IntegerField(null=False)
+    created_at = models.DateTimeField(null=False)
